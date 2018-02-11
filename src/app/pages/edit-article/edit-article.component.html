@@ -1,0 +1,49 @@
+<nav class="ma-navbar">
+  <div class="ma-navbar-item">
+    <a [routerLink]="['/home']"
+       routerLinkActive="active">
+      <i class="fas fa-home"></i>
+    </a>
+  </div>
+  <div class="ma-navbar-item logout">
+    <a href="#"
+       (click)="$event.preventDefault(); logout()">
+      <i class="fas fa-sign-out-alt"></i>
+    </a>
+  </div>
+</nav>
+
+<div class="edit-article" *ngIf="article">
+  <h2 class="edit-article-title">{{mode.toUpperCase()}} POST</h2>
+  <div class="edit-article-post">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="article-title">
+          <label>Article title</label>
+          <input class="form-control"
+                 [placeholder]="'Article title'"
+                 [(ngModel)]="article.title">
+        </div>
+        <div class="article-text">
+          <label>Article content</label>
+          <ma-tiny-mce [(model)]="article.text" [options]="tinymceOptions"></ma-tiny-mce>
+        </div>
+      </div>
+    </div>
+    <div class="row action-btn">
+      <div class="col-md-6">
+        <button class="btn btn-default btn-lg btn-block" (click)="goback()">
+          Cancel
+        </button>
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-primary btn-lg btn-block" *ngIf="mode === 'update'" (click)="update()">
+          Update
+        </button>
+        <button class="btn btn-primary btn-lg btn-block" *ngIf="mode === 'create'" (click)="save()">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

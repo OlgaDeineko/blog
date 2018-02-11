@@ -1,0 +1,49 @@
+<div class="visitor">
+  <header>
+    <div class="header-bar">
+      <div class="container">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-6"><h1>Blog</h1></div>
+            <div class="col-md-6 text-right">
+              <div class="pull-right">
+                <a [routerLink]="['/admin/dashboard']"
+                   class="btn btn-outline-primary btn-lg btn-white"
+                   *ngIf="$Auth.isLogin()">
+                  Admin Panel
+                </a>
+                <button (click)="login()"
+                        class="btn btn-outline-primary btn-lg btn-white"
+                        *ngIf="!$Auth.isLogin()">
+                  Log in
+                </button>
+                <button (click)="logout()"
+                        class="btn btn-outline-primary btn-lg btn-white"
+                        *ngIf="$Auth.isLogin()">
+                  Log out
+                </button>
+                <button type="button" *ngIf="!$Auth.isLogin()"
+                        class="btn btn-primary btn-lg btn-white" [routerLink]="['/registration']">
+                  Sing up
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="col-md-12">
+      <ul class="articles row">
+        <li class="col-md-3" *ngFor="let article of articles" [routerLink]="['/article', article.id]">
+          <h2>{{article.title}}</h2>
+          <p [innerHTML]="article.text | slice:0:70"></p>
+          <span class="comments"> <i class="fas fa-comments"></i> <span *ngIf="article.comments">{{article.comments.length}}</span><span
+            *ngIf="!article.comments">0</span></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+

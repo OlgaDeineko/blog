@@ -1,0 +1,54 @@
+<div class="row login">
+  <div class="col-md-8 offset-md-2">
+
+    <div class="modal-header">
+      <h3 class="modal-title" id="modal-title">Sing in</h3>
+    </div>
+
+    <div class="modal-body" id="modal-body">
+      <form name="login"
+            [formGroup]="loginForm"
+            (submit)="loginForm.valid && login()"
+            #loginFormElement="ngForm"
+            novalidate>
+
+        <ma-form-input
+          [formElement]="loginFormElement"
+          [form]="loginForm"
+          [label]="'Email adress'"
+          [name]="'email'">
+        </ma-form-input>
+
+        <ma-form-input
+          [formElement]="loginFormElement"
+          [form]="loginForm"
+          [label]="'Password'"
+          [name]="'password'"
+          [type]="'password'">
+        </ma-form-input>
+
+        <div class="login-actions text-right">
+          <button type="submit"
+                  class="btn btn-primary btn-lg btn-block"
+                  [disabled]="loginForm.invalid">
+            Sing in
+          </button>
+
+          <button type="button"
+                  class="btn btn-primary btn-lg btn-block" (click)="gotoregistration()">
+            Sing up
+          </button>
+
+          <button type="button"
+                  class="btn btn-default btn-lg btn-block"
+                  (click)="$ActiveModal.dismiss()">
+            Cancel
+          </button>
+
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="registration">
+  <header>
+    <div class="header-bar">
+      <div class="container">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-6"><a [routerLink]="['/home']"><h1>Blog</h1></a></div>
+            <div class="col-md-6 text-right">
+              <div class="pull-right">
+                <a [routerLink]="['/admin/dashboard']"
+                   class="btn btn-outline-primary btn-lg btn-white"
+                   *ngIf="$Auth.isLogin()">
+                  Admin Panel
+                </a>
+                <button (click)="login()"
+                        class="btn btn-outline-primary btn-lg btn-white"
+                        *ngIf="!$Auth.isLogin()">
+                  Log in
+                </button>
+                <button (click)="logout()"
+                        class="btn btn-outline-primary btn-lg btn-white"
+                        *ngIf="$Auth.isLogin()">
+                  Log out
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="col-md-12">
+      <div class="registr-form">
+        <h2>Registration</h2>
+        <form name="registrEmail"
+              [formGroup]="registrForm"
+              (submit)="registrForm.valid && register()"
+              #registrFormElement="ngForm"
+              novalidate>
+          <ma-form-input
+            [formElement]="registrFormElement"
+            [form]="registrForm"
+            [name]="'firstName'"
+            [placeholder]="'First name'">
+          </ma-form-input>
+
+          <ma-form-input
+            [formElement]="registrFormElement"
+            [form]="registrForm"
+            [name]="'lastName'"
+            [placeholder]="'Last name'">
+          </ma-form-input>
+
+          <ma-form-input
+            [formElement]="registrFormElement"
+            [form]="registrForm"
+            [name]="'email'"
+            [placeholder]="'Email'">
+          </ma-form-input>
+
+          <ma-form-input
+            [formElement]="registrFormElement"
+            [form]="registrForm"
+            [name]="'password'"
+            [placeholder]="'Password'"
+            [type]="'password'">
+          </ma-form-input>
+
+          <button type="submit"
+                  class="btn btn-primary btn-lg btn-block"
+                  [disabled]="registrForm.invalid">
+            Sing up
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

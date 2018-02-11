@@ -1,0 +1,81 @@
+<div class="visitor">
+  <header>
+    <div class="header-bar">
+      <div class="container">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-6"><a [routerLink]="['/home']"><h1>Blog</h1></a></div>
+            <div class="col-md-6 text-right">
+              <div class="pull-right">
+                <a [routerLink]="['/admin/dashboard']"
+                   class="btn btn-outline-primary btn-lg btn-white"
+                   *ngIf="$Auth.isLogin()">
+                  Admin Panel
+                </a>
+                <button (click)="login()"
+                        class="btn btn-outline-primary btn-lg btn-white"
+                        *ngIf="!$Auth.isLogin()">
+                  Log in
+                </button>
+                <button (click)="logout()"
+                        class="btn btn-outline-primary btn-lg btn-white"
+                        *ngIf="$Auth.isLogin()">
+                  Log out
+                </button>
+                <button type="button" *ngIf="!$Auth.isLogin()"
+                        class="btn btn-primary btn-lg btn-white" [routerLink]="['/registration']">
+                  Sing up
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container" *ngIf="article">
+    <div class="blog-post">
+      <div class="col-md-12">
+        <div class="blog-post-article">
+          <h2>{{article.title}}</h2>
+          <span class="author"> {{article.postDate| date : 'MMM d, y'}} <b>{{article.author}}</b></span>
+          <p [innerHTML]="article.text"></p>
+        </div>
+        <h3 class="comments-title">Comments</h3>
+        <div class="blog-post-comments">
+          <div class="comment" *ngFor="let comment of article.comments">
+            <q>{{comment.body}}</q> <cite *ngIf="comment.author">-{{comment.author}}</cite>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="add-comment">
+      <div class="col-md-12">
+        <h3>Add Comment</h3>
+        <form name="comments"
+              [formGroup]="addCommentForm"
+              #addCommentFormElement="ngForm"
+              novalidate>
+          <textarea [formControlName]="'body'" class="form-control" rows="10"></textarea>
+
+          <ma-form-input
+            [formElement]="addCommentFormElement"
+            [form]="addCommentForm"
+            [label]="'by:'"
+            [placeholder]="'Name'"
+            [name]="'author'"
+          >
+          </ma-form-input>
+          <div class="footer text-right">
+            <button type="button" (click)="submit()" class="btn btn-primary btn-lg">
+              LEAVE A COMMENT
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+

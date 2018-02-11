@@ -1,0 +1,16 @@
+<div class="modal-body confirm-modal">
+  <div class="text-center title">
+    {{answer.toUpperCase()}}
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-default" (click)="cancel()">
+    Cancel
+  </button>
+
+  <button class="btn btn-primary"
+          (click)="ok()">
+    Yes
+  </button>
+</div>

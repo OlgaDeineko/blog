@@ -1,0 +1,113 @@
+<nav class="ma-navbar">
+  <div class="ma-navbar-item">
+    <a [routerLink]="['/home']"
+       routerLinkActive="active">
+      <i class="fas fa-home"></i>
+    </a>
+  </div>
+  <div class="ma-navbar-item logout">
+    <div
+       (click)="$event.preventDefault();logout()">
+      <i class="fas fa-sign-out-alt"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="content-wrapper row dashboard">
+  <div class="col-md-1">
+    <div class="dashboard-actions">
+      <div class="d-inline-block">
+        <button class="btn btn-primary btn-lg" [routerLink]="['/admin/create']">
+          <i class="fas fa-plus"></i>
+          Add
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-11 dashboard-content">
+    <div class="container-fluid">
+      <div class="row dashboard-title">
+        <div class="col-md-12">
+          <h1>
+            Dashboard
+          </h1>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="text"
+               class="form-control"
+               [(ngModel)]="searchModel"
+               (input)="search()"
+               placeholder="Search">
+      </div>
+
+      <div class="tree-header">
+        <div class="tree-header-title">
+        </div>
+        <div class="tree-header-update">
+          Created
+        </div>
+        <div class="tree-header-author">
+          Author
+        </div>
+        <div class="tree-header-actions"></div>
+      </div>
+
+      <div class="tree" *ngIf="!searchModel.length">
+        <div *ngFor="let article of articles">
+          <div class="tree-item">
+            <div class="tree-item-title">
+              {{article.title}}
+            </div>
+            <div class="tree-item-update">
+              <span>{{article.postDate| date : 'MMM d, y'}}</span>
+            </div>
+            <div class="tree-item-author">
+              {{article.author}}
+            </div>
+            <div class="tree-item-actions text-right">
+              <button class="icon-button" [routerLink]="['/admin/edit', article.id]">
+                <i class="fas fa-pencil-alt"></i>
+              </button>
+              <button class="icon-button"
+                      maConfirmWindow
+                      (onConfirmOk)="remove(article.id)"
+                      [confirmMessage]="'Do you want to delete this article?'">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </div>
+          <div class="tree-item-divider"></div>
+        </div>
+      </div>
+      <div class="tree" *ngIf="searchModel.length">
+        <div *ngFor="let article of articleResults">
+          <div>
+            <div class="tree-item">
+              <div class="tree-item-update">
+                <span>{{article.postData}}</span>
+              </div>
+              <div class="tree-item-author">
+                {{article.author}}
+              </div>
+              <div class="tree-item-actions text-right">
+                <button class="icon-button"
+                        [routerLink]="['/admin/edit', article.id]">
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                </button>
+                <button class="icon-button"
+                        maConfirmWindow
+                        (onConfirmOk)="remove(article.id)"
+                        [confirmMessage]="'Do you want to delete this article?'">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+            <div class="tree-item-divider"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

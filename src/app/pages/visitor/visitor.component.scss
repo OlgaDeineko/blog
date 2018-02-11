@@ -1,0 +1,35 @@
+.visitor {
+  .articles {
+    ul {
+      list-style-type: none;
+    }
+
+    li {
+      display: inline-block;
+      margin: 25px;
+      padding: 20px;
+      cursor: pointer;
+      transition: background linear 0.5s;
+      border-bottom: 1px solid darken(#6998ff, 20);
+      h2 {
+        color: #6998ff;
+        font-weight: bold;
+      }
+
+      &:hover {
+        background: darken(#79B9D2, 20);;
+        color: white;
+
+        h2 {
+          color: white;
+        }
+
+      }
+    }
+    .comments {
+      position: absolute;
+      bottom: 0;
+      margin-bottom: 10px;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+.blog-post {
+  margin: 20px;
+  &-article {
+    margin-bottom: 10px;
+  }
+  .author {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #999;
+  }
+  .comments-title {
+    color: #428bca;
+  }
+  &-comments {
+    max-height: 50vh;
+    overflow-y: auto;
+
+    .comment {
+      padding: 20px 5px;
+      border-bottom: 1px solid #428bca;
+      cite {
+        font-weight: bold;
+      }
+    }
+
+  }
+}
+
+.add-comment {
+  margin: 20px;
+}
