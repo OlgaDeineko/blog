@@ -77,7 +77,7 @@ export let routes: Routes = [
       {
         path: '**',
         pathMatch: 'full',
-        redirectTo: '/404'
+        redirectTo: '/home'
       }
     ]
   },
